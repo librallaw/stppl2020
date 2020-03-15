@@ -11,6 +11,7 @@
 	<link href="css/ionicons.min.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="https://unpkg.com/nprogress@0.2.0/nprogress.css" rel="stylesheet" type="text/css" media="all" />
 
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="images/favicon.png" />
@@ -557,6 +558,9 @@
 	</div>
 
 	<!-- Included JS files -->
+
+
+<script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
 <script src="https://js.paystack.co/v1/inline.js"></script>
 	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
@@ -607,10 +611,10 @@
             var kcnum = $('input[name=kcnum]').val();
 
 
+            NProgress.start();
             $.ajax({
-                type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+                type        : 'GET', // define the type of HTTP verb we want to use (POST for our form)
                 url         : 'verify.php?phone='+kcnum, // the url where we want to POST
-                data        : formData, // our data object
                 dataType    : 'json', // what type of data do we expect back from the server
                 encode          : true
             })
@@ -619,6 +623,7 @@
 
                     // log data to the console so we can see
                     console.log(data);
+
 
 
                     //if number is on kingschat then process
@@ -648,6 +653,7 @@
                         });
                         handler.openIframe();
                     }else{
+                        NProgress.done();
                         alert("Please make sure that you use a number that is on KingsChat")
                     }
 
@@ -657,14 +663,9 @@
             // stop the form from submitting the normal way and refreshing the page
             event.preventDefault();
         }else{
-            alert("Please make sure that you use a number that is on KingsChat")
+            alert("Please make sure that you fill in all fields")
 
         }
-
-
-
-    });
-
 
 
 

@@ -18,7 +18,7 @@ curl_close($ch);
 $resp = json_decode($res);
 $data = isset($resp->barcode_id)?"true":"false";
 
-var_dump($resp);exit;
+echo $data;
 
 
 ?>
